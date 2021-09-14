@@ -1,0 +1,24 @@
+/*
+
+今日知识重点:
+    1.第一行必须是'syntax = "proto3";'(除非前面是注释),而且C#语言的话必须加，因为protobuf是从proto3才开始支持C#，如果不加，默认是proto2
+    2.语法类似C#,都是大括号，分号结尾，符合现有习惯，很nice
+    3.定义一个类，对于C#来说class变成了message
+    4.类的属性没有get和set的属性访问器，而是后面以一个序号代替，序号从1开始（19000~19999不能使用，内部占用，最大可以是2的29次方减1，这个可以忽略，一般很少有这么多字段的类）。
+    5.序号很重要，是protobuf序列化和反序列的依据，简单讲就是序列化和反序列化就是通过序号来的，而不是通过字段名
+    6.reserved表示保留字段，某些情况下需要弃用某个字段，就可以用reserved标识该字段名或者序号，注意的是字段名和字段序号不能混在一个reserved标识里面
+
+*/
+syntax = "proto3";
+
+message SearchRequest {
+
+    reserved 4,9 to 11;
+    reserved "test1","test2";
+
+    string query = 1;
+    int32 page_number = 2;
+    int32 result_per_page = 3;
+    //int32 test1 = 4;
+    int32 test2 = 5;
+}

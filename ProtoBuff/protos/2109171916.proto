@@ -1,0 +1,20 @@
+/*
+
+今日知识重点:
+    1.枚举必须要有0的枚举项，这点跟C#编码规范类似(让枚举项0有意义)，只不过protobuf是强制，C#是建议
+    2.枚举可以有别名，通过"option allow_alias = true;"来实现
+    3.枚举也支持reserved字段
+    4.枚举常量  必须  在32位整数范围内
+*/
+
+syntax = "proto3";
+
+enum Color {
+    option allow_alias = true;
+    
+    COLOR_RED = 0;
+    COLOR_GREEN = 5;
+    Test1=11,
+    Test2=11,
+    COLOR_BLUE = 1234;
+}

@@ -7,7 +7,7 @@
     4.类的属性没有get和set的属性访问器，而是后面以一个序号代替，序号从1开始（19000~19999不能使用，内部占用，最大可以是2的29次方减1，这个可以忽略，一般很少有这么多字段的类），序号最好在1~15之内，具体未研究。
     5.序号很重要，是protobuf序列化和反序列的依据，简单讲就是序列化和反序列化就是通过序号来的，而不是通过字段名
     6.reserved表示保留字段，某些情况下需要弃用某个字段，就可以用reserved标识该字段名或者序号，注意的是字段名和字段序号不能混在一个reserved标识里面
-    7.默认值跟C#类似，除了
+    7.默认值跟C#类似，但是:  string=""；数组=[]；对象={}。并不是null。
 
 */
 syntax = "proto3";
@@ -21,5 +21,13 @@ message SearchRequest {
     int32 page_number = 2;
     int32 result_per_page = 3;
     //int32 test1 = 4;
-    int32 test2 = 5;
+
+    repeated Order datas=5;
+
+    //int32 test2 = 9;
+
+}
+
+message Order {
+    string id = 1;
 }
